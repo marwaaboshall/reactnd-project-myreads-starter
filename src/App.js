@@ -24,32 +24,8 @@ class BooksApp extends React.Component {
       console.log(this.state.books);
     });
   }
-  
-  // getBooks() {
-  //   BooksAPI.getAll().then((data) => {
-  //     //this.state.books = data;
-  //     console.log(this.state.books);
-  //     //console.log(data);
-  //     for(let i of data) {
-  //       console.log(i.imageLinks.thumbnail);
-  //       console.log(i.title);
-  //       console.log(i.authors.join(' '));
-  //       console.log(i.shelf);
-  //       if(i.shelf === 'read') {
-  //         console.log(`Books Read: ${i.title}`);
-  //       }
-  //       if(i.shelf === 'currentlyReading') {
-  //         console.log(`Books Currently Reading: ${i.title}`);
-  //       }
-  //       if(i.shelf === 'wantToRead') {
-  //         console.log(`Books Read: ${i.title}`);
-  //       }
-  //     }
-  //   });
-  // } 
 
   render() {
-   //this.getBooks();
     return (
       <div className="app">
         {this.state.showSearchPage ? (
