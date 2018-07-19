@@ -2,24 +2,54 @@ import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
 import Book from './Book';
+import * as BooksAPI from './BooksAPI'
 
 class Search extends Component {
     state = {
-        query: ''
+        query: '',
+        books: []
+    }
+
+    searchForBooks = (query) => {
+        if(query) {
+            //const match = new RegExp(escapeRegExp(query), 'i');
+            BooksAPI.search(query).then((data) => {
+                console.log('data2');
+                console.log(data);
+                this.setState({
+                  books: data
+                });
+            });
+        } else {
+            this.setState({ books: []})
+        }
     }
 
     updateQuery = (query) => {
-        this.setState({ query: query.trim()})
+        this.setState({ query: query});
+        this.searchForBooks(this.state.query);
     }
+    
+    // searchForBooks = (query) => {
+    //     if(query) {
+    //         const match = new RegExp(escapeRegExp(query), 'i');
+    //         BooksAPI.search(query).then( data => {
+    //             this.setState((state) => {
+    //                 return {
+    //                     books: books.filter((book) => match.test(book.title))
+    //                 }
+    //             })
+    //         });
+    //         //showingBooks = this.books.filter((book) => match.test(book.title))
+    //     } else {
+    //         this.setState({ books: [] })
+    //     }
+    //     //showingBooks.sort(sortBy('name'));
+    // }
+    
     render() {
         let showingBooks;
-        if(this.state.query) {
-            const match = new RegExp(escapeRegExp(this.state.query), 'i');
-            showingBooks = this.props.books.filter((book) => match.test(book.title))
-        } else {
-            showingBooks = this.props.books;
-        }
-        showingBooks.sort(sortBy('name'));
+
         return(
             <div className="search-books">
             <div className="search-books-bar">
@@ -43,7 +73,7 @@ class Search extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-              {showingBooks.map(book => <Book book={book} 
+              {this.state.books.map(book => <Book book={book} 
                                               key={book.id} 
                                               updateBookShelf={this.props.changeBookShelf}/>)}
               </ol>
