@@ -11,17 +11,23 @@ class Search extends Component {
     }
 
     searchForBooks = (query) => {
+        let books = [];
         if(query) {
             //const match = new RegExp(escapeRegExp(query), 'i');
             BooksAPI.search(query).then((data) => {
-                console.log('data2');
-                console.log(data);
-                this.setState({
-                  books: data
-                });
+                if(data.length) {
+                    console.log('data2');
+                    console.log(data);
+                    this.setState({
+                        books: data
+                    });
+                }
+                else {
+                    this.setState({ books });
+                }
             });
         } else {
-            this.setState({ books: []})
+            this.setState({ books })
         }
     }
 
