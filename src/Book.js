@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Book extends Component {
+    state = {
+        shelf: 'none'
+    }
+    componentDidMount() {
+        if(this.props.book.shelf) {
+            this.setState({ shelf: this.props.book.shelf })
+        }
+    }
     onChangeBookShelf = (e) => {
+        this.setState({ shelf: e.target.value })
         this.props.updateBookShelf(this.props.book, e.target.value);
     }
     render() {
@@ -14,7 +23,7 @@ class Book extends Component {
                         backgroundImage: `url(${this.props.book.imageLinks && this.props.book.imageLinks.thumbnail})`}}>
                     </div>
                     <div className="book-shelf-changer">
-                    <select onChange={this.onChangeBookShelf} value={this.props.book.shelf}>
+                    <select onChange={this.onChangeBookShelf} value={this.state.shelf}>
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>

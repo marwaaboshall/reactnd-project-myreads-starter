@@ -15,7 +15,6 @@ class Search extends Component {
         if(query) {
             BooksAPI.search(query).then((data) => {
                 if(data.length) {
-                    
                     console.log('data2');
                     console.log(data);
                     this.setState({
