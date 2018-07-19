@@ -10,12 +10,12 @@ class Search extends Component {
         books: []
     }
 
-    searchForBooks = (query) => {
-        let books = [];
+    updateQuery = (query) => {
+        this.setState({ query: query});
         if(query) {
-            //const match = new RegExp(escapeRegExp(query), 'i');
             BooksAPI.search(query).then((data) => {
                 if(data.length) {
+                    
                     console.log('data2');
                     console.log(data);
                     this.setState({
@@ -23,39 +23,15 @@ class Search extends Component {
                     });
                 }
                 else {
-                    this.setState({ books });
+                    this.setState({ books:[] });
                 }
             });
         } else {
-            this.setState({ books })
+            this.setState({ books:[] })
         }
     }
-
-    updateQuery = (query) => {
-        this.setState({ query: query});
-        this.searchForBooks(this.state.query);
-    }
-    
-    // searchForBooks = (query) => {
-    //     if(query) {
-    //         const match = new RegExp(escapeRegExp(query), 'i');
-    //         BooksAPI.search(query).then( data => {
-    //             this.setState((state) => {
-    //                 return {
-    //                     books: books.filter((book) => match.test(book.title))
-    //                 }
-    //             })
-    //         });
-    //         //showingBooks = this.books.filter((book) => match.test(book.title))
-    //     } else {
-    //         this.setState({ books: [] })
-    //     }
-    //     //showingBooks.sort(sortBy('name'));
-    // }
-    
+  
     render() {
-        let showingBooks;
-
         return(
             <div className="search-books">
             <div className="search-books-bar">
@@ -73,8 +49,6 @@ class Search extends Component {
                        placeholder="Search by title or author"
                        value={this.state.query} 
                        onChange={(event) => this.updateQuery(event.target.value)}/>
-                 {/* {JSON.stringify(this.state)} */}
-
               </div>
             </div>
             <div className="search-books-results">
