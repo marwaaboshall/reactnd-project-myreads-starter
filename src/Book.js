@@ -5,15 +5,18 @@ class Book extends Component {
     state = {
         shelf: 'none'
     }
+
     componentDidMount() {
         if(this.props.book.shelf) {
             this.setState({ shelf: this.props.book.shelf })
         }
     }
+
     onChangeBookShelf = (e) => {
         this.setState({ shelf: e.target.value })
         this.props.updateBookShelf(this.props.book, e.target.value);
     }
+
     render() {
         return(
             <li>
@@ -33,7 +36,7 @@ class Book extends Component {
                     </div>
                 </div>
                 <div className="book-title">{this.props.book.title}</div>
-                <div className="book-authors">{this.props.book.authors && this.props.book.authors[0]}</div>
+                <div className="book-authors">{this.props.book.authors && this.props.book.authors.join(', ')}</div>
                 </div>
             </li>
         )
