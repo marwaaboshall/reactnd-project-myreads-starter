@@ -6,6 +6,11 @@ class Book extends Component {
         shelf: 'none'
     }
 
+    static propTypes = {
+        book: PropTypes.object.isRequired,
+        updateBookShelf: PropTypes.func.isRequired
+    }
+
     componentDidMount() {
         if(this.props.book.shelf) {
             this.setState({ shelf: this.props.book.shelf })
@@ -36,15 +41,11 @@ class Book extends Component {
                     </div>
                 </div>
                 <div className="book-title">{this.props.book.title}</div>
-                <div className="book-authors">{this.props.book.authors && this.props.book.authors.join(', ')}</div>
+                <div className="book-authors">{this.props.book.authors && this.props.book.authors}</div>
                 </div>
             </li>
         )
     }
 }
 
-Book.propTypes = {
-    book: PropTypes.object.isRequired,
-    updateBookShelf: PropTypes.func.isRequired
-}
 export default Book;

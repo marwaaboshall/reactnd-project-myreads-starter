@@ -3,6 +3,11 @@ import Book from './Book';
 import PropTypes from 'prop-types';
 
 class Shelf extends Component {
+    static propTypes = {
+        books: PropTypes.array.isRequired,
+        changeBookShelf: PropTypes.func.isRequired,
+        shelfTitle: PropTypes.string.isRequired
+    }
     render() {
         return(
             <div className="bookshelf">
@@ -17,9 +22,4 @@ class Shelf extends Component {
     }
 }
 
-Shelf.propTypes = {
-    books: PropTypes.array.isRequired,
-    changeBookShelf: PropTypes.func.isRequired,
-    shelfTitle: PropTypes.string.isRequired
-}
 export default Shelf;
