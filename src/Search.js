@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import escapeRegExp from 'escape-string-regexp';
-import sortBy from 'sort-by';
 import { Link } from 'react-router-dom';
 import Book from './Book';
 import * as BooksAPI from './BooksAPI'
@@ -16,18 +14,18 @@ class Search extends Component {
         if(query) {
             BooksAPI.search(query).then((data) => {
                 if(data.length) {
-                    this.setState({
-                        books: data
+                    let filteredBooks = data.map(book => {
+                        let currentBook = this.props.currentBooks.filter(
+                            b => b.id === book.id
+                        )[0];
+                        if(currentBook) {
+                            book.shelf = currentBook.shelf;
+                        }
+                        return book;
                     });
-                    this.props.currentBooks.map((book) => {
-                        data.forEach(element => {
-                            console.log(element);
-                            if(element.id === book.id) {
-                                console.log("same");
-                                element.shelf = book.shelf;
-                            }
-                        })
-                    })
+                    if(this.state.books !== filteredBooks) {
+                        this.setState({books: filteredBooks});
+                    }
                 }
                 else {
                     this.setState({ books:[] });
