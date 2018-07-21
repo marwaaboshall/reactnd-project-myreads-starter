@@ -4,7 +4,7 @@ This project is the final assessment project for Udacity's React Fundamentals co
 
 
 
-## TL;DR
+## Start
 
 To be able to run the app, open the directory then run:
 * npm start
@@ -20,13 +20,13 @@ A list of the packages that are used in the development:
 
 ## How to use the app
 
->Clone: git clone https://github.com/marwaaboshall/reactnd-project-myreads-starter.git
->Run: npm start
->In the main page, you can move a book from one shelf to another using the change shelf controller that
+*Clone: git clone https://github.com/marwaaboshall/reactnd-project-myreads-starter.git
+*Run: npm start
+*In the main page, you can move a book from one shelf to another using the change shelf controller that
 is attached to each book.
->Search: you can search for specific books in the search page by clicking on the search button in the 
+*Search: you can search for specific books in the search page by clicking on the search button in the 
 down right corner of the screen. you can also add new books to your page using the controller that is attached to each book in the search page.
->you can remove a book from your shelf by choosing none in the change book controller.
+*you can remove a book from your shelf by choosing none in the change book controller.
 
 
 ## Backend Server
