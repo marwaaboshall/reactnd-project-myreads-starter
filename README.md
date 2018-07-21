@@ -15,8 +15,8 @@ To make sure that you are not missing any dependencies, make sure to run:
 ## Development
 
 A list of the packages that are used in the development:
-*PropTypes, to install it run: npm install --save prop-types
-*react-router-dom, to install it run: npm install --save react-router-dom
+* PropTypes, to install it run: npm install --save prop-types
+* react-router-dom, to install it run: npm install --save react-router-dom
 
 ## How to use the app
 
